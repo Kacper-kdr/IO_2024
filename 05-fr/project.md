@@ -50,7 +50,7 @@ Osoba chcąca zakupić produkt na aukcji.
 
 [Sprzedający](#ac1):
 * [UC1](#uc1): Wystawienie produktu na aukcję
-* ...
+* [UC1](#uc1): Podanie ceny i danych produktu
 
 [Kupujący](#ac2)
 * ...
@@ -77,17 +77,42 @@ Osoba chcąca zakupić produkt na aukcji.
 ---
 
 <a id="uc2"></a>
-### UC2: ...
+### UC2: Licytacja produktu
 
-**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2), ...
+**Aktorzy:** [Sprzedający](#ac1), [Kupujący](#ac2)
 
 **Scenariusz główny:**
-1. ...
+1. [kupujący](#ac2) zgłasza do systemu chęć zakupy produktu na aukcji.
+2. System prosi o podanie kwoty za oferowany produkt.
+3. [kupujący](#ac2) podaje kwotę.
+4. System weryfikuje poprawność danych.
+5. System informuje o zatwierdzeniu oferty i aktualizuje kwotę licytacji.
+6. System informuje pozostałych [kupujący](#ac2)ch o nowej kwocie licytacji.
+7. System informuje [sprzedający](#ac1) o nowej ofercie na licytacji jego produktu.
+8. System po upływie określonego czasu wybiera najwyższą oferowaną kwotę.
+9. System informuje [sprzedający](#ac1) o zakończeniu aukcji i jej kwocie.
+10. System informuje [kupujący](#ac2) o wygraniu aukcji.
+11. System pobiera środki z salda [kupujący](#ac2).
+12. System przekazuje środki na saldo [sprzedający](#ac1).
+13. System prosi [kupujący](#ac2) o dane do wysyłki produktu.
+14. [kupujący](#ac2) podaje dane do wysyłki produktu.
+15. System wysyła dane do wysyłki produktu dla [sprzedający](#ac1).
+16. [sprzedający](#ac1) wysyła produkt.
+17. System zamyka aukcję.
 
 **Scenariusze alternatywne:** 
 
-1.A. ...
-* 4.A.1. ...
+1.A. Żaden kupujący nie zgłasza oferty
+* 1.A.1. System po upływie czasu licytacji informuje [sprzedający](#ac1) o braku ofert za jego produkt.
+* 1.A.2. Przejdź do kroku 13.
+4.A. Podano niepoprawną kwotę
+* 4.A.1. System informuje o błędnie podanej kwocie.
+* 4.A.2. Przejdź do kroku 2.
+11.A. Brak środków na saldzie
+* 11.A.1. System informuje [kupujący](#ac2) o braku środków na saldzie.
+* 11.A.2. System prosi [kupujący](#ac2) o wybranie innej formy płatności.
+* 11.A.3. [kupujący](#ac2) wybiera inną formę płatności i dokonuje wpłaty.
+* 11.A.4. Przejdź do kroku 12.
 
 ---
 
@@ -117,9 +142,9 @@ Aukcję wygrywa ten z [Kupujący](#ac2)ch, który w momencie jej zakończenia (u
 ## Macierz CRUDL
 
 
-| Przypadek użycia                                  | Aukcja | Produkt | ... |
-| ------------------------------------------------- | ------ | ------- | --- |
-| UC1: Wystawienia produktu na aukcję               |    C   |    C    | ... |
-| ???                                               |  ...   |  ...    | ... |
+| Przypadek użycia                                  | Aukcja | Produkt |
+| ------------------------------------------------- | ------ | ------- |
+| UC1: Wystawienia produktu na aukcję               |    C   |    C    |
+| UC2: Licytacja produktu                           |  R,U,D |  R,U,D  |
 
 
